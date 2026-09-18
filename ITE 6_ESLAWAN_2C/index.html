@@ -1,111 +1,238 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trina Eslawan | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <h1 id="pageTitle">ITE-6 PORTFOLIO</h1>
-        <nav class="navbar">
-            <ul class="menu">
-                <li onclick="showSection('home')">Home</li>
-                <li onclick="showSection('intro')">Introduction</li>
-                <li onclick="showSection('about')">About</li>
-                <li class="dropdown" id="exerciseDropdown">
-                    <span class="menu-title" onclick="toggleDropdown()">Exercises ▾</span>
-                    <ul class="submenu" id="exerciseSubmenu">
-                        <li class="dropdown-side">
-                            <span class="menu-title">Exercise 1 ▸</span>
-                            <ul class="subsubmenu">
-                                <li onclick="showSection('ex1a1'); closeDropdown()">Activity 1</li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-side">
-                            <span class="menu-title">Exercise 2 ▸</span>
-                            <ul class="subsubmenu">
-                                <li onclick="showSection('ex2a1'); closeDropdown()">Activity 1</li>
-                                <li onclick="showSection('ex2a2'); closeDropdown()">Activity 2</li>
-                                <li onclick="showSection('ex2a3'); closeDropdown()">Activity 3</li>
-                                <li onclick="showSection('ex2a4'); closeDropdown()">Activity 4</li>
-                                <li onclick="showSection('ex2a5'); closeDropdown()">Activity 5</li>
-                                <li onclick="showSection('ex2a6'); closeDropdown()">Activity 6</li>
-                                <li onclick="showSection('ex2a7'); closeDropdown()">Activity 7</li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-side">
-                            <span class="menu-title">Exercise 3 ▸</span>
-                            <ul class="subsubmenu">
-                                <li onclick="showSection('ex3a1'); closeDropdown()">Activity 1</li>
-                                <li onclick="showSection('ex3a2'); closeDropdown()">Activity 2</li>
-                                <li onclick="showSection('ex3a3'); closeDropdown()">Activity 3</li>
-                                <li onclick="showSection('ex3a4'); closeDropdown()">Activity 4</li>
-                                <li onclick="showSection('ex3a5'); closeDropdown()">Activity 5</li>
-                                <li onclick="showSection('ex3a6'); closeDropdown()">Activity 6</li>
-                                <li onclick="showSection('ex3a7'); closeDropdown()">Activity 7</li>
-                                <li onclick="showSection('ex3a8'); closeDropdown()">Activity 8</li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-side">
-                            <span class="menu-title">Exercise 4 ▸</span>
-                            <ul class="subsubmenu">
-                                <li onclick="showSection('ex4a1'); closeDropdown()">Activity 1</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+      <h1 id="pageTitle">ITE-6 PORTFOLIO</h1>
+      <nav class="navbar">
+        <ul class="menu">
+          <li onclick="showSection('home')">Home</li>
+          <li onclick="showSection('intro')">Introduction</li>
+          <li onclick="showSection('about')">About</li>
+          <li class="dropdown" id="exerciseDropdown">
+            <span class="menu-title" onclick="toggleDropdown()"
+              >Exercises ▾</span
+            >
+            <ul class="submenu" id="exerciseSubmenu">
+              <li class="dropdown-side">
+                <span class="menu-title">Exercise 1 ▸</span>
+                <ul class="subsubmenu">
+                  <li
+                    onclick="
+                      showSection('ex1a1')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 1
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-side">
+                <span class="menu-title">Exercise 2 ▸</span>
+                <ul class="subsubmenu">
+                  <li
+                    onclick="
+                      showSection('ex2a1')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 1
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a2')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 2
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a3')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 3
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a4')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 4
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a5')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 5
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a6')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 6
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex2a7')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 7
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-side">
+                <span class="menu-title">Exercise 3 ▸</span>
+                <ul class="subsubmenu">
+                  <li
+                    onclick="
+                      showSection('ex3a1')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 1
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a2')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 2
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a3')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 3
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a4')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 4
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a5')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 5
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a6')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 6
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a7')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 7
+                  </li>
+                  <li
+                    onclick="
+                      showSection('ex3a8')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 8
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown-side">
+                <span class="menu-title">Exercise 4 ▸</span>
+                <ul class="subsubmenu">
+                  <li
+                    onclick="
+                      showSection('ex4a1')
+                      closeDropdown()
+                    "
+                  >
+                    Activity 1
+                  </li>
+                </ul>
+              </li>
             </ul>
-        </nav>
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section id="home" class="content-section">
-            <div class="result-box home-box">
-                <div class="profile-container">
-                    <div class="profile-circle">
-                        <img src="images/TRINA.jpg" alt="Trina Eslawan">
-                    </div>
-                </div>
-                <h1 class="welcome-text">WELCOME! TO ESLAWAN'S ITE 6 PORTFOLIO.</h1>
-                <button id="mainBtn" onclick="showSection('intro')">GET STARTED</button>
+      <section id="home" class="content-section">
+        <div class="result-box home-box">
+          <div class="profile-container">
+            <div class="profile-circle">
+              <img src="images/TRINA.jpg" alt="Trina Eslawan" />
             </div>
-        </section>
+          </div>
+          <h1 class="welcome-text">WELCOME! TO ESLAWAN'S ITE 6 PORTFOLIO.</h1>
+          <button id="mainBtn" onclick="showSection('intro')">
+            GET STARTED
+          </button>
+        </div>
+      </section>
 
-        <section id="intro" class="content-section hidden">
-            <div class="task-box">
-                <h3>INTRODUCTION</h3>
-            </div>
-            <div class="result-box intro-box">
-                <h2>Hi, I'm Trina Eslawan</h2>
-                <p>Welcome to my technical portfolio where I showcase my progress in web development and JavaScript
-                    logic.</p>
-            </div>
-        </section>
+      <section id="intro" class="content-section hidden">
+        <div class="task-box">
+          <h3>INTRODUCTION</h3>
+        </div>
+        <div class="result-box intro-box">
+          <h2>Hi, I'm Trina Eslawan</h2>
+          <p>
+            Welcome to my technical portfolio where I showcase my progress in
+            web development and JavaScript logic.
+          </p>
+        </div>
+      </section>
 
-        <section id="about" class="content-section hidden">
-            <div class="task-box">
-                <h3>ABOUT</h3>
-            </div>
-            <div class="result-box about-box">
-                <p>This project demonstrates modular UI design, CSS nesting for multi-level menus, and dynamic DOM
-                    manipulation.</p>
-            </div>
-        </section>
+      <section id="about" class="content-section hidden">
+        <div class="task-box">
+          <h3>ABOUT</h3>
+        </div>
+        <div class="result-box about-box">
+          <p>
+            This project demonstrates modular UI design, CSS nesting for
+            multi-level menus, and dynamic DOM manipulation.
+          </p>
+        </div>
+      </section>
 
-        <section id="ex1a1" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 1 - ACTIVITY 1</h3>
-                <p>Basic structure and semantics.</p>
-            </div>
-            <div class="result-box">
-                <div class="demo-section">
-                    <p><strong>HTML Structure Example</strong></p>
-                    <pre class="code-block"><code>&lt;section class="content-section"&gt;
+      <section id="ex1a1" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 1 - ACTIVITY 1</h3>
+          <p>Basic structure and semantics.</p>
+        </div>
+        <div class="result-box">
+          <div class="demo-section">
+            <p><strong>HTML Structure Example</strong></p>
+            <pre
+              class="code-block"
+            ><code>&lt;section class="content-section"&gt;
   &lt;div class="task-box"&gt;
     &lt;h3&gt;EX 1 - ACTIVITY 1&lt;/h3&gt;
     &lt;p&gt;Basic structure and semantics.&lt;/p&gt;
@@ -114,11 +241,11 @@
     &lt;p&gt;HTML foundation completed.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
-                </div>
+          </div>
 
-                <div class="demo-section">
-                    <p><strong>CSS Style Example (code)</strong></p>
-                    <pre class="code-block"><code>body {
+          <div class="demo-section">
+            <p><strong>CSS Style Example (code)</strong></p>
+            <pre class="code-block"><code>body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #0f172a;
   color: #f8fafc;
@@ -160,245 +287,278 @@ button {
   border-radius: 6px;
   cursor: pointer;
 }</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="ex2a1" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 1: ALERT</h3>
+          <p>Task: Display a welcome alert.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity1()">EXECUTE TASK</button>
+          <div id="ex2a1-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a2" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 2: USER DATA</h3>
+          <p>Task: Prompt for name and age.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity2()">EXECUTE TASK</button>
+          <div id="ex2a2-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a3" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 3: CALCULATOR</h3>
+          <p>Task: Perform basic math via prompts.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity3()">EXECUTE TASK</button>
+          <div id="ex2a3-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a4" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 4: FAVORITES</h3>
+          <p>Task: Ask for name and favorite number.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity4()">EXECUTE TASK</button>
+          <div id="ex2a4-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a5" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 5: ELIGIBILITY</h3>
+          <p>Task: Check age for eligibility.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity5()">EXECUTE TASK</button>
+          <div id="ex2a5-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a6" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 6: LOOPS</h3>
+          <p>Task: Show for-loop and while-loop results.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity6()">EXECUTE TASK</button>
+          <div id="ex2a6-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex2a7" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 2 - ACTIVITY 7: CLICK TEST</h3>
+          <p>Task: Trigger a button click alert.</p>
+        </div>
+        <div class="result-box">
+          <button onclick="activity7()">EXECUTE TASK</button>
+          <div id="ex2a7-result" class="output-display"></div>
+        </div>
+      </section>
+
+      <section id="ex3a1" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 1: BACKGROUND</h3>
+          <p>Task: Toggle page color.</p>
+        </div>
+        <div class="result-box"><button id="bgBtn">EXECUTE TASK</button></div>
+      </section>
+
+      <section id="ex3a2" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 2: DARK MODE</h3>
+          <p>Task: Invert page colors.</p>
+        </div>
+        <div class="result-box"><button id="darkBtn">EXECUTE TASK</button></div>
+      </section>
+
+      <section id="ex3a3" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 3: LIST ITEM</h3>
+          <p>Task: Add list item with checkbox.</p>
+        </div>
+        <div class="result-box">
+          <input
+            type="text"
+            id="customItemInput"
+            placeholder="Enter your custom item..."
+          />
+          <ul id="list"></ul>
+          <div class="button-group">
+            <button id="addItemBtn">EXECUTE TASK</button>
+            <button id="clearListBtn" class="clear-btn">CLEAR ALL</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="ex3a4" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 4: REMOVE PARA</h3>
+          <p>Task: Add input box, then remove paragraph.</p>
+        </div>
+        <div class="result-box">
+          <input
+            type="text"
+            id="paraInput"
+            placeholder="Enter a paragraph..."
+          />
+          <p id="removePara">This paragraph will be removed.</p>
+          <button id="removeBtn">EXECUTE TASK</button>
+        </div>
+      </section>
+
+      <section id="ex3a5" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 5: CHAR COUNTER</h3>
+          <p>Task: Count characters in real-time.</p>
+        </div>
+        <div class="result-box">
+          <input type="text" id="textInput" placeholder="Type here..." />
+          <p>Characters: <span id="charCount">0</span></p>
+        </div>
+      </section>
+
+      <section id="ex3a6" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 6: ADDITION</h3>
+          <p>Task: Simple sum calculator.</p>
+        </div>
+        <div class="result-box">
+          <input type="number" id="num1" placeholder="Num 1" />
+          <input type="number" id="num2" placeholder="Num 2" />
+          <button id="addBtn">EXECUTE TASK</button>
+          <p>Result: <span id="result">0</span></p>
+        </div>
+      </section>
+
+      <section id="ex3a7" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 7: CHANGE IMAGE</h3>
+          <p>Task: Change the image source.</p>
+        </div>
+        <div class="result-box">
+          <div id="imageCircle" class="image-circle">
+            <img id="image" src="images/capybara.png" alt="Capybara" />
+          </div>
+          <button id="imgBtn">EXECUTE TASK</button>
+        </div>
+      </section>
+
+      <section id="ex3a8" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 3 - ACT 8: TO-DO LIST</h3>
+          <p>Task: Add tasks with checkboxes.</p>
+        </div>
+        <div class="result-box">
+          <input type="text" id="todoInput" placeholder="New task..." />
+          <button id="todoBtn">EXECUTE TASK</button>
+          <ul id="todoList"></ul>
+          <button id="clearTodoBtn" class="clear-btn">CLEAR ALL</button>
+        </div>
+      </section>
+
+      <section id="ex4a1" class="content-section hidden">
+        <div class="task-box">
+          <h3>EX 4 - ACT 1: QUIZ/EXAM GRADE CALCULATOR</h3>
+          <p>Task: Compute final grade using quiz, exam, and MCO scores.</p>
+        </div>
+        <div class="result-box">
+          <div style="text-align: left">
+            <div class="grades-cards">
+              <!-- Quiz Panel -->
+              <div class="grade-panel quiz-panel">
+                <p class="panel-label">Quiz Grades:</p>
+                <div id="quizGradesContainer">
+                  <input
+                    type="number"
+                    class="quiz-grade"
+                    placeholder="Quiz Grade"
+                    min="0"
+                    max="100"
+                  />
                 </div>
-            </div>
-        </section>
-
-        <section id="ex2a1" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 1: ALERT</h3>
-                <p>Task: Display a welcome alert.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity1()">EXECUTE TASK</button>
-                <div id="ex2a1-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a2" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 2: USER DATA</h3>
-                <p>Task: Prompt for name and age.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity2()">EXECUTE TASK</button>
-                <div id="ex2a2-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a3" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 3: CALCULATOR</h3>
-                <p>Task: Perform basic math via prompts.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity3()">EXECUTE TASK</button>
-                <div id="ex2a3-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a4" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 4: FAVORITES</h3>
-                <p>Task: Ask for name and favorite number.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity4()">EXECUTE TASK</button>
-                <div id="ex2a4-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a5" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 5: ELIGIBILITY</h3>
-                <p>Task: Check age for eligibility.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity5()">EXECUTE TASK</button>
-                <div id="ex2a5-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a6" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 6: LOOPS</h3>
-                <p>Task: Show for-loop and while-loop results.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity6()">EXECUTE TASK</button>
-                <div id="ex2a6-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex2a7" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 2 - ACTIVITY 7: CLICK TEST</h3>
-                <p>Task: Trigger a button click alert.</p>
-            </div>
-            <div class="result-box">
-                <button onclick="activity7()">EXECUTE TASK</button>
-                <div id="ex2a7-result" class="output-display"></div>
-            </div>
-        </section>
-
-        <section id="ex3a1" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 1: BACKGROUND</h3>
-                <p>Task: Toggle page color.</p>
-            </div>
-            <div class="result-box"><button id="bgBtn">EXECUTE TASK</button></div>
-        </section>
-
-        <section id="ex3a2" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 2: DARK MODE</h3>
-                <p>Task: Invert page colors.</p>
-            </div>
-            <div class="result-box"><button id="darkBtn">EXECUTE TASK</button></div>
-        </section>
-
-        <section id="ex3a3" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 3: LIST ITEM</h3>
-                <p>Task: Add list item with checkbox.</p>
-            </div>
-            <div class="result-box">
-                <input type="text" id="customItemInput" placeholder="Enter your custom item...">
-                <ul id="list"></ul>
-                <div class="button-group">
-                    <button id="addItemBtn">EXECUTE TASK</button>
-                    <button id="clearListBtn" class="clear-btn">CLEAR ALL</button>
+                <p id="quizPercent" class="avg-result hidden"></p>
+                <div class="panel-actions">
+                  <button id="addQuizBtn" type="button">Add Quiz Grade</button>
                 </div>
-            </div>
-        </section>
+              </div>
 
-        <section id="ex3a4" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 4: REMOVE PARA</h3>
-                <p>Task: Add input box, then remove paragraph.</p>
-            </div>
-            <div class="result-box">
-                <input type="text" id="paraInput" placeholder="Enter a paragraph...">
-                <p id="removePara">This paragraph will be removed.</p>
-                <button id="removeBtn">EXECUTE TASK</button>
-            </div>
-        </section>
-
-        <section id="ex3a5" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 5: CHAR COUNTER</h3>
-                <p>Task: Count characters in real-time.</p>
-            </div>
-            <div class="result-box">
-                <input type="text" id="textInput" placeholder="Type here...">
-                <p>Characters: <span id="charCount">0</span></p>
-            </div>
-        </section>
-
-        <section id="ex3a6" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 6: ADDITION</h3>
-                <p>Task: Simple sum calculator.</p>
-            </div>
-            <div class="result-box">
-                <input type="number" id="num1" placeholder="Num 1">
-                <input type="number" id="num2" placeholder="Num 2">
-                <button id="addBtn">EXECUTE TASK</button>
-                <p>Result: <span id="result">0</span></p>
-            </div>
-        </section>
-
-        <section id="ex3a7" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 7: CHANGE IMAGE</h3>
-                <p>Task: Change the image source.</p>
-            </div>
-            <div class="result-box">
-                <div id="imageCircle" class="image-circle">
-                    <img id="image" src="images/capybara.png" alt="Capybara">
+              <!-- Exam Panel -->
+              <div class="grade-panel exam-panel">
+                <p class="panel-label">Exam Grades:</p>
+                <div id="examGradesContainer">
+                  <input
+                    type="number"
+                    class="exam-grade"
+                    placeholder="Exam Grade"
+                    min="0"
+                    max="100"
+                  />
                 </div>
-                <button id="imgBtn">EXECUTE TASK</button>
-            </div>
-        </section>
-
-        <section id="ex3a8" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 3 - ACT 8: TO-DO LIST</h3>
-                <p>Task: Add tasks with checkboxes.</p>
-            </div>
-            <div class="result-box">
-                <input type="text" id="todoInput" placeholder="New task...">
-                <button id="todoBtn">EXECUTE TASK</button>
-                <ul id="todoList"></ul>
-                <button id="clearTodoBtn" class="clear-btn">CLEAR ALL</button>
-            </div>
-        </section>
-
-        <section id="ex4a1" class="content-section hidden">
-            <div class="task-box">
-                <h3>EX 4 - ACT 1: QUIZ/EXAM GRADE CALCULATOR</h3>
-                <p>Task: Compute final grade using quiz, exam, and MCO scores.</p>
-            </div>
-            <div class="result-box">
-                <div style="text-align:left;">
-                    <div class="grades-cards">
-                        <!-- Quiz Panel -->
-                        <div class="grade-panel quiz-panel">
-                            <p class="panel-label">Quiz Grades:</p>
-                            <div id="quizGradesContainer">
-                                <input type="number" class="quiz-grade" placeholder="Quiz Grade" min="0" max="100">
-                            </div>
-                            <p id="quizPercent" class="avg-result hidden"></p>
-                            <div class="panel-actions">
-                                <button id="addQuizBtn" type="button">Add Quiz Grade</button>
-                            </div>
-                        </div>
-
-                        <!-- Exam Panel -->
-                        <div class="grade-panel exam-panel">
-                            <p class="panel-label">Exam Grades:</p>
-                            <div id="examGradesContainer">
-                                <input type="number" class="exam-grade" placeholder="Exam Grade" min="0" max="100">
-                            </div>
-                            <p id="examPercent" class="avg-result hidden"></p>
-                            <div class="panel-actions">
-                                <button id="addExamBtn" type="button">Add Exam Grade</button>
-                            </div>
-                        </div>
-
-                        <!-- MCO Panel (two inputs) -->
-                        <div class="grade-panel mco-panel">
-                            <p class="panel-label">MCO (Major Course Output):</p>
-                            <div class="mco-grid">
-                                <input type="number" id="mco1Score" placeholder="MCO 1 (0-100)" min="0" max="100">
-                                <input type="number" id="mco2Score" placeholder="MCO 2 (0-100)" min="0" max="100">
-                            </div>
-                            <p id="mcoPercent" class="avg-result hidden"></p>
-                        </div>
-                    </div>
-
-                    <div class="panel-actions">
-                        <button id="calculateBtn" type="button">CALCULATE</button>
-                        <button id="resetBtn" type="button" class="clear-btn">RESET</button>
-                    </div>
-
-                    <div id="resultBox" class="output-display hidden">
-                        <p id="finalGrade" class="final-grade"></p>
-                        <p id="gradeEquivalent" class="grade-equivalent"></p>
-                    </div>
+                <p id="examPercent" class="avg-result hidden"></p>
+                <div class="panel-actions">
+                  <button id="addExamBtn" type="button">Add Exam Grade</button>
                 </div>
+              </div>
+
+              <!-- MCO Panel (two inputs) -->
+              <div class="grade-panel mco-panel">
+                <p class="panel-label">MCO (Major Course Output):</p>
+                <div class="mco-grid">
+                  <input
+                    type="number"
+                    id="mco1Score"
+                    placeholder="MCO 1 (0-100)"
+                    min="0"
+                    max="100"
+                  />
+                  <input
+                    type="number"
+                    id="mco2Score"
+                    placeholder="MCO 2 (0-100)"
+                    min="0"
+                    max="100"
+                  />
+                </div>
+                <p id="mcoPercent" class="avg-result hidden"></p>
+              </div>
             </div>
-        </section>
+
+            <div class="panel-actions">
+              <button id="calculateBtn" type="button">CALCULATE</button>
+              <button id="resetBtn" type="button" class="clear-btn">
+                RESET
+              </button>
+            </div>
+
+            <div id="resultBox" class="output-display hidden">
+              <p id="finalGrade" class="final-grade"></p>
+              <p id="gradeEquivalent" class="grade-equivalent"></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Trina Eslawan | BS Computer Science</p>
-            <p>ITE-6: Interactive Programming Portfolio</p>
-        </div>
+      <div class="footer-content">
+        <p>&copy; 2026 Trina Eslawan | BS Computer Science</p>
+        <p>ITE-6: Interactive Programming Portfolio</p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
