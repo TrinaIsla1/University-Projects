@@ -1,0 +1,77 @@
+.character-profile {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  padding: 20px;
+}
+
+.profile-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.character-display {
+  background-color: #1a1a2e;
+  border: 2px solid #ff6b35;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+}
+
+.character-display h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.class-badge {
+  background-color: #ff6b35;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.stats-section,
+.info-section {
+  background-color: #1a1a2e;
+  border: 1px solid #ff6b35;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.stats-section h3,
+.info-section h3 {
+  color: #ff6b35;
+  margin-bottom: 15px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-buttons .btn {
+  width: 100%;
+}
+
+.skills-section {
+  margin-top: 20px;
+}
+
+.skill-entry {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+
+.skill-entry p {
+  margin: 4px 0 0;
+  font-size: 0.9em;
+  opacity: 0.85;
+}

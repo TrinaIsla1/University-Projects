@@ -1,0 +1,81 @@
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #ff6b35;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #ff6b35;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #ff8555;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #4a4a6a;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #6a6a8a;
+}
+
+.card {
+  background-color: #1a1a2e;
+  border: 1px solid #ff6b35;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.stat-bar .label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.stat-bar .bar {
+  flex: 1;
+  height: 25px;
+  background-color: #0f0f1e;
+  border: 1px solid #ff6b35;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.stat-bar .fill {
+  height: 100%;
+  background-color: #ff6b35;
+  width: var(--percentage, 50%);
+  transition: width 0.3s ease;
+}

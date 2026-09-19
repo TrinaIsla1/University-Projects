@@ -1,0 +1,55 @@
+.leaderboard-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  padding: 20px;
+}
+
+.leaderboard-page h2 {
+  max-width: 1000px;
+  margin: 30px auto 20px;
+}
+
+.leaderboard-table {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #1a1a2e;
+  border: 2px solid #ff6b35;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 80px 120px;
+  background-color: #ff6b35;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  gap: 20px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 80px 120px;
+  padding: 15px;
+  border-bottom: 1px solid #444;
+  gap: 20px;
+  align-items: center;
+}
+
+.table-row:hover {
+  background-color: rgba(255, 107, 53, 0.1);
+}
+
+.table-row .rank {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.table-row:nth-child(3) .rank {
+  color: #c0c0c0;
+}
+
+.table-row:nth-child(4) .rank {
+  color: #cd7f32;
+}

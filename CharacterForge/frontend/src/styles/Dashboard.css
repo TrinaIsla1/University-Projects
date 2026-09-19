@@ -1,0 +1,71 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+  padding: 20px;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-content h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #ff6b35;
+}
+
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.character-card {
+  background-color: #1a1a2e;
+  border: 2px solid #ff6b35;
+  border-radius: 10px;
+  padding: 20px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.character-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.character-card p {
+  margin: 8px 0;
+  color: #b0b0b0;
+}
+
+.character-card .btn {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  background-color: #8b0000;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 16px 0;
+  text-align: center;
+}
