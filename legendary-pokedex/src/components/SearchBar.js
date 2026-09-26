@@ -1,12 +1,18 @@
-import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
-import { useTheme } from '../theme/ThemeContext';
+import React from 'react'
+import { View, TextInput, StyleSheet } from 'react-native'
+import { useTheme } from '../theme/ThemeContext'
 
 export default function SearchBar({ value, onChangeText }) {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
   return (
     <View
-      style={[styles.wrap, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}
+      style={[
+        styles.wrap,
+        {
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.border,
+        },
+      ]}
     >
       <TextInput
         value={value}
@@ -21,7 +27,7 @@ export default function SearchBar({ value, onChangeText }) {
         clearButtonMode="while-editing"
       />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -33,4 +39,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   input: { height: 44, fontSize: 15 }, // REQ-4.6.2: 44pt min tap target
-});
+})

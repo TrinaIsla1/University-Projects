@@ -1,77 +1,90 @@
-import React, { useMemo, useState } from 'react';
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
+import React, { useMemo, useState } from 'react'
+import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
 
-import { useTheme } from '../theme/ThemeContext';
-import { useLegendaryRoster } from '../hooks/useLegendaryRoster';
-import { useDebouncedValue } from '../hooks/useDebouncedValue';
-import { useNetworkStatus } from '../hooks/useNetworkStatus';
+import { useTheme } from '../theme/ThemeContext'
+import { useLegendaryRoster } from '../hooks/useLegendaryRoster'
+import { useDebouncedValue } from '../hooks/useDebouncedValue'
+import { useNetworkStatus } from '../hooks/useNetworkStatus'
 
-import SearchBar from '../components/SearchBar';
-import FilterSheet from '../components/FilterSheet';
-import PokemonListItem from '../components/PokemonListItem';
-import LoadingState from '../components/LoadingState';
-import ErrorState from '../components/ErrorState';
-import OfflineBanner from '../components/OfflineBanner';
+import SearchBar from '../components/SearchBar'
+import FilterSheet from '../components/FilterSheet'
+import PokemonListItem from '../components/PokemonListItem'
+import LoadingState from '../components/LoadingState'
+import ErrorState from '../components/ErrorState'
+import offlineBanner from '../components/OfflineBanner'
 
 function sortItems(items, sortBy) {
-  const sorted = [...items];
+  const sorted = [...items]
   switch (sortBy) {
     case 'name':
-      return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      return sorted.sort((a, b) => a.name.localeCompare(b.name))
     case 'statTotal':
-      return sorted.sort((a, b) => b.statTotal - a.statTotal);
+      return sorted.sort((a, b) => b.statTotal - a.statTotal)
     case 'gen':
-      return sorted.sort((a, b) => a.gen - b.gen || a.pokedexNumber - b.pokedexNumber);
+      return sorted.sort(
+        (a, b) => a.gen - b.gen || a.pokedexNumber - b.pokedexNumber,
+      )
     case 'pokedexNumber':
     default:
-      return sorted.sort((a, b) => (a.pokedexNumber ?? 9999) - (b.pokedexNumber ?? 9999));
+      return sorted.sort(
+        (a, b) => (a.pokedexNumber ?? 9999) - (b.pokedexNumber ?? 9999),
+      )
   }
 }
 
 export default function HomeScreen({ navigation }) {
-  const { theme } = useTheme();
-  const isConnected = useNetworkStatus(); // REQ-5.2.3
-  const { items, loadedCount, total, status, errorMessage, retry } = useLegendaryRoster();
+  const { theme } = useTheme()
+  const isConnected = useNetworkStatus() // REQ-5.2.3
+  const { items, loadedCount, total, status, errorMessage, retry } =
+    useLegendaryRoster()
 
-  const [query, setQuery] = useState('');
-  const debouncedQuery = useDebouncedValue(query, 250); // REQ-4.2.2
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedGens, setSelectedGens] = useState([]);
-  const [sortBy, setSortBy] = useState('pokedexNumber');
-  const [filterVisible, setFilterVisible] = useState(false);
+  const [query, setQuery] = useState('')
+  const debouncedQuery = useDebouncedValue(query, 250) // REQ-4.2.2
+  const [selectedTypes, setSelectedTypes] = useState([])
+  const [selectedGens, setSelectedGens] = useState([])
+  const [sortBy, setSortBy] = useState('pokedexNumber')
+  const [filterVisible, setFilterVisible] = useState(false)
 
   const toggleType = (t) =>
-    setSelectedTypes((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
+    setSelectedTypes((prev) =>
+      prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t],
+    )
   const toggleGen = (g) =>
-    setSelectedGens((prev) => (prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]));
+    setSelectedGens((prev) =>
+      prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g],
+    )
   const clearFilters = () => {
-    setSelectedTypes([]);
-    setSelectedGens([]);
-    setQuery('');
-  };
+    setSelectedTypes([])
+    setSelectedGens([])
+    setQuery('')
+  }
 
   // REQ-4.3.4: filters (name, type, region/generation) combine together and
   // update the visible list immediately.
   const filtered = useMemo(() => {
-    const q = debouncedQuery.trim().toLowerCase();
-    let list = items;
-    if (q) list = list.filter((p) => p.name.toLowerCase().includes(q));
-    if (selectedTypes.length) list = list.filter((p) => p.types.some((t) => selectedTypes.includes(t)));
-    if (selectedGens.length) list = list.filter((p) => selectedGens.includes(p.gen));
-    return sortItems(list, sortBy);
-  }, [items, debouncedQuery, selectedTypes, selectedGens, sortBy]);
+    const q = debouncedQuery.trim().toLowerCase()
+    let list = items
+    if (q) list = list.filter((p) => p.name.toLowerCase().includes(q))
+    if (selectedTypes.length)
+      list = list.filter((p) => p.types.some((t) => selectedTypes.includes(t)))
+    if (selectedGens.length)
+      list = list.filter((p) => selectedGens.includes(p.gen))
+    return sortItems(list, sortBy)
+  }, [items, debouncedQuery, selectedTypes, selectedGens, sortBy])
 
-  const activeFilterCount = selectedTypes.length + selectedGens.length;
+  const activeFilterCount = selectedTypes.length + selectedGens.length
 
   if (status === 'loading' && items.length === 0) {
-    return <LoadingState label={`Loading Pokédex… (${loadedCount}/${total})`} />;
+    return <LoadingState label={`Loading Pokédex… (${loadedCount}/${total})`} />
   }
   if (status === 'error' && items.length === 0) {
-    return <ErrorState message={errorMessage} onRetry={retry} />;
+    return <ErrorState message={errorMessage} onRetry={retry} />
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       {!isConnected && <OfflineBanner />}
 
       <View style={styles.searchRow}>
@@ -82,7 +95,13 @@ export default function HomeScreen({ navigation }) {
           onPress={() => setFilterVisible(true)}
           accessibilityRole="button"
           accessibilityLabel="Open filters and sort"
-          style={[styles.filterButton, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}
+          style={[
+            styles.filterButton,
+            {
+              backgroundColor: theme.colors.card,
+              borderColor: theme.colors.border,
+            },
+          ]}
         >
           <Text style={{ color: theme.colors.text, fontWeight: '700' }}>
             Filter{activeFilterCount ? ` (${activeFilterCount})` : ''}
@@ -92,7 +111,9 @@ export default function HomeScreen({ navigation }) {
 
       <Text style={[styles.resultCount, { color: theme.colors.subtext }]}>
         {filtered.length} of {total} Legendaries
-        {status === 'loading' ? ` · still loading (${loadedCount}/${total})` : ''}
+        {status === 'loading'
+          ? ` · still loading (${loadedCount}/${total})`
+          : ''}
       </Text>
 
       <FlatList
@@ -101,7 +122,12 @@ export default function HomeScreen({ navigation }) {
         renderItem={({ item }) => (
           <PokemonListItem
             item={item}
-            onPress={() => navigation.navigate('Detail', { apiName: item.apiName, name: item.name })}
+            onPress={() =>
+              navigation.navigate('Detail', {
+                apiName: item.apiName,
+                name: item.name,
+              })
+            }
           />
         )}
         contentContainerStyle={styles.listContent}
@@ -129,12 +155,17 @@ export default function HomeScreen({ navigation }) {
         onChangeSortBy={setSortBy}
       />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  searchRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingRight: 12 },
+  searchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingRight: 12,
+  },
   filterButton: {
     borderWidth: 1,
     borderRadius: 10,
@@ -144,7 +175,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  resultCount: { fontSize: 12, marginHorizontal: 16, marginTop: 10, marginBottom: 2 },
+  resultCount: {
+    fontSize: 12,
+    marginHorizontal: 16,
+    marginTop: 10,
+    marginBottom: 2,
+  },
   listContent: { paddingBottom: 24 },
   empty: { textAlign: 'center', marginTop: 48, fontSize: 14 },
-});
+})

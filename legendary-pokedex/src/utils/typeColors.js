@@ -17,10 +17,10 @@ export const TYPE_COLORS = {
   dark: '#705746',
   steel: '#B7B7CE',
   fairy: '#D685AD',
-};
+}
 
-export const ALL_TYPES = Object.keys(TYPE_COLORS);
+export const ALL_TYPES = Object.keys(TYPE_COLORS)
 
 export function colorForType(type) {
-  return TYPE_COLORS[type] ?? '#777777';
+  return TYPE_COLORS[type] ?? '#777777'
 }

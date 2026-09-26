@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useMemo } from 'react';
-import { useColorScheme } from 'react-native';
-import { DefaultTheme, DarkTheme } from '@react-navigation/native';
+import React, { createContext, useContext, useMemo } from 'react'
+import { useColorScheme } from 'react-native'
+import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 
 const lightColors = {
   background: '#F7F7FA',
@@ -12,7 +12,7 @@ const lightColors = {
   headerBackground: '#FFFFFF',
   headerText: '#1C1C1E',
   danger: '#D64545',
-};
+}
 
 const darkColors = {
   background: '#121214',
@@ -24,16 +24,16 @@ const darkColors = {
   headerBackground: '#1D1D20',
   headerText: '#F2F2F5',
   danger: '#FF6B6B',
-};
+}
 
-const ThemeContext = createContext(null);
+const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
-  const scheme = useColorScheme(); // 'light' | 'dark' | null
+  const scheme = useColorScheme() // 'light' | 'dark' | null
 
   const value = useMemo(() => {
-    const dark = scheme === 'dark';
-    const colors = dark ? darkColors : lightColors;
+    const dark = scheme === 'dark'
+    const colors = dark ? darkColors : lightColors
 
     const navigationTheme = {
       ...(dark ? DarkTheme : DefaultTheme),
@@ -45,19 +45,19 @@ export function ThemeProvider({ children }) {
         border: colors.border,
         primary: colors.accent,
       },
-    };
+    }
 
     return {
       theme: { dark, colors },
       navigationTheme,
-    };
-  }, [scheme]);
+    }
+  }, [scheme])
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 export function useTheme() {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used within a ThemeProvider');
-  return ctx;
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error('useTheme must be used within a ThemeProvider')
+  return ctx
 }
