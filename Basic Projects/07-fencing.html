@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fencing</title><style>body{margin:0;background:#222;color:#fff;font-family:system-ui;text-align:center}canvas{background:#2e7d32;max-width:100%;touch-action:none;display:block;margin:auto}h2{margin:8px}button{padding:8px 14px;margin:6px;border:0;border-radius:6px;font-size:16px} canvas{background:#37474f}</style></head><body><h2>🤺 Fencing</h2><div id="hud"></div><canvas id="c" width="480" height="240"></canvas>
+<div><button id="L">◀</button><button id="R">▶</button><button id="A">⚔️ Lunge</button><button id="B">🛡️ Parry</button></div><p>Keys: A/D move, W lunge, S parry. First to 5 touches.</p>
+<script>
+const x=c.getContext('2d');let p,e,ps=0,es=0,msg='';
+function reset(){p={x:120,l:0,k:0,cd:0};e={x:360,l:0,k:0,cd:0}}reset();
+const K={};onkeydown=ev=>{K[ev.key.toLowerCase()]=1;if(ev.key=='w')go(p);if(ev.key=='s')par(p)};onkeyup=ev=>K[ev.key.toLowerCase()]=0;
+function go(f){if(!f.cd){f.l=14;f.cd=40}}function par(f){if(!f.cd){f.k=18;f.cd=35}}
+let hold=0;L.onpointerdown=()=>hold=-1;R.onpointerdown=()=>hold=1;onpointerup=()=>hold=0;A.onclick=()=>go(p);B.onclick=()=>par(p);
+function hit(a,b,ax){const d=Math.abs(a.x-b.x);if(a.l>8&&d<75){if(b.k>0)return'parry';return'hit'}}
+function loop(){if(ps<5&&es<5){
+if(K.a||hold<0)p.x-=3;if(K.d||hold>0)p.x+=3;p.x=Math.max(30,Math.min(p.x,e.x-45));
+const d=e.x-p.x;if(d>110)e.x-=2;else if(d<80)e.x+=2;if(!e.cd&&d<90&&Math.random()<.04)go(e);if(!e.cd&&p.l>0&&Math.random()<.3)par(e);
+[p,e].forEach(f=>{if(f.l>0)f.l--;if(f.k>0)f.k--;if(f.cd>0)f.cd--});
+let r=hit(p,e);if(r=='hit'){ps++;msg='Touch! You scored';reset()}else if(r=='parry'){msg='Enemy parried';p.l=0}
+r=hit(e,p);if(r=='hit'){es++;msg='Touched! CPU scored';reset()}else if(r=='parry'){msg='You parried!';e.l=0}}
+x.clearRect(0,0,480,240);x.fillStyle='#90a4ae';x.fillRect(10,190,460,6);
+function fig(f,dir,col){x.fillStyle=col;x.fillRect(f.x-12,110,24,80);x.beginPath();x.arc(f.x,98,14,0,7);x.fill();x.strokeStyle=f.k>0?'#4fc3f7':'#fff';x.lineWidth=f.k>0?5:3;x.beginPath();x.moveTo(f.x,140);x.lineTo(f.x+dir*(f.k>0?30:(f.l>0?80:45)),f.k>0?110:140);x.stroke()}
+fig(p,1,'#e53935');fig(e,-1,'#1e88e5');
+hud.textContent='You '+ps+' - '+es+' CPU   '+msg+(ps>=5?'  YOU WIN! Refresh to replay':es>=5?'  CPU wins. Refresh to replay':'');requestAnimationFrame(loop)}
+loop();
+</script></body></html>
