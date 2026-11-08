@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Product Posting</title><style>
+body{font-family:system-ui;margin:0;background:#f4f4f4}header{background:#27ae60;color:#fff;padding:12px 16px;font-size:20px}
+.wrap{max-width:900px;margin:auto;padding:12px}form,.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 4px #0002}
+form{display:grid;gap:8px;margin-bottom:12px}input,textarea{padding:8px;border:1px solid #ccc;border-radius:6px;font:inherit}button{background:#27ae60;color:#fff;border:0;border-radius:6px;padding:8px;cursor:pointer}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}.card img{width:100%;height:140px;object-fit:cover;border-radius:8px}.price{color:#27ae60;font-weight:bold;font-size:18px}</style></head><body>
+<header>🛍️ Post & Sell</header><div class="wrap"><form onsubmit="post(event)"><input id="t" placeholder="Product name" required><input id="pr" type="number" placeholder="Price (₱)" required><input id="ct" placeholder="Contact number" required><textarea id="d" placeholder="Description"></textarea><input id="im" type="file" accept="image/*"><button>Post Product</button></form>
+<input id="s" placeholder="🔍 Search products" oninput="draw()" style="width:100%;box-sizing:border-box;padding:8px;margin-bottom:12px"><div class="feed" id="feed"></div></div>
+<script>
+let L=JSON.parse(localStorage.posts||'[]');
+function post(e){e.preventDefault();const f=im.files[0],add=img=>{L.unshift({id:Date.now(),t:t.value,p:pr.value,c:ct.value,d:d.value,img});try{localStorage.posts=JSON.stringify(L)}catch(x){alert('Storage full, use a smaller image')}e.target.reset();draw()};
+if(f){const r=new FileReader();r.onload=()=>add(r.result);r.readAsDataURL(f)}else add('')}
+function del(id){L=L.filter(x=>x.id!=id);localStorage.posts=JSON.stringify(L);draw()}
+function draw(){const q=s.value.toLowerCase();feed.innerHTML=L.filter(x=>x.t.toLowerCase().includes(q)).map(x=>'<div class="card">'+(x.img?'<img src="'+x.img+'">':'')+'<h3>'+x.t.replace(/</g,'&lt;')+'</h3><div class="price">₱'+x.p+'</div><p>'+x.d.replace(/</g,'&lt;')+'</p><small>📞 '+x.c+'</small><br><button onclick="del('+x.id+')" style="background:#c0392b;margin-top:6px">Delete</button></div>').join('')||'<p>No posts yet.</p>'}
+draw();
+</script></body></html>
