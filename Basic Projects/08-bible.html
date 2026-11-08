@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bible Reader</title><style>
+body{font-family:Georgia,serif;margin:0;background:#fdf6e3;color:#2b2b2b}header{background:#5d4037;color:#fff;padding:12px 16px;font-size:20px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;padding:10px;background:#efe3c2}select,input,button{padding:7px;font-size:15px;border-radius:6px;border:1px solid #999}button{background:#5d4037;color:#fff;border:0;cursor:pointer}
+#txt{max-width:700px;margin:auto;padding:14px;line-height:1.7}sup{color:#a1887f;margin-right:3px}.v{cursor:pointer}.v.bm{background:#fff3a0}</style></head><body>
+<header>📖 Bible Reader (KJV)</header>
+<div class="bar"><select id="bk"></select><input id="ch" type="number" min="1" value="1" style="width:70px"><button onclick="load()">Read</button><button onclick="step(-1)">◀</button><button onclick="step(1)">▶</button><button onclick="fs(2)">A+</button><button onclick="fs(-2)">A-</button><button onclick="showBM()">⭐ Bookmarks</button></div>
+<div id="txt">Choose a book and chapter, then tap Read. Tap a verse to bookmark it. (Needs internet.)</div>
+<script>
+const B="Genesis,Exodus,Leviticus,Numbers,Deuteronomy,Joshua,Judges,Ruth,1 Samuel,2 Samuel,1 Kings,2 Kings,1 Chronicles,2 Chronicles,Ezra,Nehemiah,Esther,Job,Psalms,Proverbs,Ecclesiastes,Song of Solomon,Isaiah,Jeremiah,Lamentations,Ezekiel,Daniel,Hosea,Joel,Amos,Obadiah,Jonah,Micah,Nahum,Habakkuk,Zephaniah,Haggai,Zechariah,Malachi,Matthew,Mark,Luke,John,Acts,Romans,1 Corinthians,2 Corinthians,Galatians,Ephesians,Philippians,Colossians,1 Thessalonians,2 Thessalonians,1 Timothy,2 Timothy,Titus,Philemon,Hebrews,James,1 Peter,2 Peter,1 John,2 John,3 John,Jude,Revelation".split(',');
+bk.innerHTML=B.map(b=>'<option>'+b+'</option>').join('');bk.value='John';ch.value=3;
+let size=18,BM=JSON.parse(localStorage.bibleBM||'[]');txt.style.fontSize=size+'px';
+async function load(){txt.textContent='Loading...';
+try{const r=await fetch('https://bible-api.com/'+encodeURIComponent(bk.value+' '+ch.value)+'?translation=kjv');if(!r.ok)throw 0;const d=await r.json();
+txt.innerHTML='<h2>'+d.reference+'</h2>'+d.verses.map(v=>{const k=bk.value+' '+v.chapter+':'+v.verse;return '<span class="v '+(BM.includes(k)?'bm':'')+'" onclick="tog(this,\''+k+'\')"><sup>'+v.verse+'</sup>'+v.text.trim()+' </span>'}).join('')}
+catch(e){txt.textContent='Could not load. Check the book/chapter number and your internet connection.'}}
+function tog(el,k){BM=BM.includes(k)?BM.filter(x=>x!=k):[...BM,k];localStorage.bibleBM=JSON.stringify(BM);el.classList.toggle('bm')}
+function step(d){ch.value=Math.max(1,+ch.value+d);load()}
+function fs(d){size=Math.max(12,size+d);txt.style.fontSize=size+'px'}
+function showBM(){txt.innerHTML='<h2>⭐ Bookmarks</h2>'+(BM.map(k=>'<p>'+k+'</p>').join('')||'None yet.')}
+</script></body></html>
