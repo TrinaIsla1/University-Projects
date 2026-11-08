@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Soccer Penalty</title><style>body{margin:0;background:#222;color:#fff;font-family:system-ui;text-align:center}canvas{background:#2e7d32;max-width:100%;touch-action:none;display:block;margin:auto}h2{margin:8px}button{padding:8px 14px;margin:6px;border:0;border-radius:6px;font-size:16px} canvas{background:#43a047}</style></head><body><h2>⚽ Penalty Shootout</h2><div id="hud"></div><canvas id="c" width="480" height="320"></canvas><p>Tap inside the goal where you want to shoot. 5 kicks.</p>
+<script>
+const x=c.getContext('2d');let goals=0,kick=0,ball={x:240,y:290},kp=240,busy=false,msg='Take your shot!',tg=null,ks=null,res=null;
+const G={x:90,y:50,w:300,h:140};
+c.onpointerdown=e=>{if(kick>=5){goals=kick=0;msg='Take your shot!';return}if(busy)return;const r=c.getBoundingClientRect(),mx=(e.clientX-r.left)*480/r.width,my=(e.clientY-r.top)*320/r.height;
+tg={x:mx,y:Math.min(my,200)};const inside=mx>G.x&&mx<G.x+G.w&&my>G.y&&my<G.y+G.h;const zone=Math.floor((mx-G.x)/(G.w/3));ks=G.x+G.w/6+G.w/3*Math.floor(Math.random()*3);const kz=Math.floor((ks-G.x)/(G.w/3));
+res=!inside?'Missed the goal!':(kz==zone?'Saved by the keeper!':'GOAL!');busy=true;t=0}
+let t=0;
+function loop(){x.clearRect(0,0,480,320);x.strokeStyle='#fff';x.lineWidth=4;x.strokeRect(G.x,G.y,G.w,G.h);x.lineWidth=1;for(let i=1;i<6;i++){x.beginPath();x.moveTo(G.x+i*50,G.y);x.lineTo(G.x+i*50,G.y+G.h);x.stroke()}
+if(busy){t+=.04;ball.x=240+(tg.x-240)*t;ball.y=290+(tg.y-290)*t;kp+=((ks)-kp)*.12;if(t>=1){busy=false;kick++;if(res=='GOAL!')goals++;msg=res;ball={x:240,y:290};kp=240;if(kick>=5)msg+='  Final: '+goals+'/5 - tap to restart'}}
+x.font='40px serif';x.fillText('🧤',kp-20,150);x.fillText('⚽',ball.x-18,ball.y+14);
+hud.textContent='Goals: '+goals+'  Kick: '+Math.min(kick+1,5)+'/5   '+msg;requestAnimationFrame(loop)}
+loop();
+</script></body></html>
