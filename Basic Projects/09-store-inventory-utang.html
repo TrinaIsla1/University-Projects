@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Store Inventory & Utang</title><style>
+body{font-family:system-ui;margin:0;background:#f0f4f8}header{background:#8e44ad;color:#fff;padding:12px 16px;font-size:20px}.wrap{max-width:900px;margin:auto;padding:12px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.box{background:#fff;padding:12px;border-radius:10px}input{padding:7px;margin:3px;border:1px solid #bbb;border-radius:6px;width:28%}button{background:#8e44ad;color:#fff;border:0;border-radius:6px;padding:6px 9px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #ddd;padding:5px;text-align:left}.low{color:#c0392b;font-weight:bold}</style></head><body>
+<header>📦 Inventory & Utang Tracker</header><div class="wrap">
+<div class="box"><h3>Inventory</h3><input id="n" placeholder="Item"><input id="s" type="number" placeholder="Stock"><input id="p" type="number" placeholder="Price"><button onclick="addI()">Add</button>
+<table><tr><th>Item</th><th>Stock</th><th>₱</th><th></th></tr><tbody id="it"></tbody></table><p>Sales today: <b id="sales">₱0</b></p></div>
+<div class="box"><h3>Utang (Credit)</h3><input id="cn" placeholder="Customer"><input id="ca" type="number" placeholder="Amount"><button onclick="addU()">Add Utang</button>
+<table><tr><th>Customer</th><th>Balance</th><th></th></tr><tbody id="ut"></tbody></table><p>Total utang: <b id="tu">₱0</b></p></div></div>
+<script>
+let I=JSON.parse(localStorage.inv||'[]'),U=JSON.parse(localStorage.utang||'{}'),S=+localStorage.sales||0;
+function save(){localStorage.inv=JSON.stringify(I);localStorage.utang=JSON.stringify(U);localStorage.sales=S;draw()}
+function addI(){if(!n.value)return;I.push({n:n.value,s:+s.value||0,p:+p.value||0});n.value=s.value=p.value='';save()}
+function sell(i){if(I[i].s<1)return alert('Out of stock');I[i].s--;S+=I[i].p;save()}
+function restock(i){const q=+prompt('Add how many?',10);if(q>0){I[i].s+=q;save()}}
+function rm(i){I.splice(i,1);save()}
+function addU(){if(!cn.value||!ca.value)return;U[cn.value]=(U[cn.value]||0)+ +ca.value;cn.value=ca.value='';save()}
+function pay(k){const a=+prompt('Payment amount for '+k,U[k]);if(a>0){U[k]-=a;if(U[k]<=0)delete U[k];save()}}
+function draw(){it.innerHTML=I.map((r,i)=>'<tr><td>'+r.n+'</td><td class="'+(r.s<=3?'low':'')+'">'+r.s+'</td><td>'+r.p+'</td><td><button onclick="sell('+i+')">Sell</button> <button onclick="restock('+i+')">+</button> <button onclick="rm('+i+')" style="background:#c0392b">✕</button></td></tr>').join('');
+ut.innerHTML=Object.keys(U).map(k=>'<tr><td>'+k+'</td><td>₱'+U[k]+'</td><td><button onclick="pay(\''+k+'\')">Pay</button></td></tr>').join('');
+sales.textContent='₱'+S;tu.textContent='₱'+Object.values(U).reduce((a,b)=>a+b,0)}
+draw();
+</script></body></html>
