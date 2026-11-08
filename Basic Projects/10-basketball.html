@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Basketball</title><style>
+body{margin:0;background:#222;color:#fff;font-family:system-ui;text-align:center}canvas{background:#ff9800;max-width:100%;touch-action:none;display:block;margin:auto}h2{margin:8px}</style></head><body>
+<h2>🏀 Free Throw</h2><div id="hud"></div><canvas id="c" width="480" height="340"></canvas><p>Tap when the power bar is near the middle (green). 10 shots.</p>
+<script>
+const x=c.getContext('2d');const g=.25,X0=80,Y0=290,HX=390,HY=150,th=Math.PI/3;
+const dx=HX-X0,dy=Y0-HY,V=Math.sqrt(g*dx*dx/(2*Math.cos(th)**2*(dx*Math.tan(th)-dy)));
+let m=0,md=.012,ball=null,score=0,shots=10,msg='';
+c.onpointerdown=()=>{if(shots<=0){score=0;shots=10;msg='';return}if(ball)return;const v=V*(.85+.3*m);ball={x:X0,y:Y0,vx:v*Math.cos(th),vy:-v*Math.sin(th),py:Y0,done:false}}
+function loop(){x.clearRect(0,0,480,340);x.fillStyle='#8d6e63';x.fillRect(0,310,480,30);
+x.fillStyle='#fff';x.fillRect(HX+28,HY-50,8,60);x.strokeStyle='#e53935';x.lineWidth=5;x.beginPath();x.moveTo(HX-20,HY);x.lineTo(HX+28,HY);x.stroke();
+if(!ball){m+=md;if(m>1||m<0)md=-md}
+x.fillStyle='#ddd';x.fillRect(20,20,200,14);x.fillStyle='#2ecc71';x.fillRect(20+200*.44,20,200*.12,14);x.fillStyle='#000';x.fillRect(20+200*m-2,16,4,22);
+if(ball){ball.py=ball.y;ball.x+=ball.vx;ball.vy+=g;ball.y+=ball.vy;
+if(!ball.done&&ball.vy>0&&ball.py<HY&&ball.y>=HY){ball.done=true;if(Math.abs(ball.x-(HX-6))<20){score+=2;msg='SWISH! +2'}else msg='Missed!';shots--}
+if(ball.y>330||ball.x>500){if(!ball.done){shots--;msg='Missed!'}ball=null}}
+if(ball){x.font='30px serif';x.fillText('🏀',ball.x-15,ball.y+10)}else{x.font='30px serif';x.fillText('🏀',X0-15,Y0+10)}
+hud.textContent='Score: '+score+'  Shots left: '+shots+'  '+msg+(shots<=0?'  GAME OVER - tap to restart':'');requestAnimationFrame(loop)}
+loop();
+</script></body></html>
