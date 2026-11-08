@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Barangay Information System</title><style>
+body{font-family:system-ui;margin:0;background:#eef3f8}header{background:#1f4e79;color:#fff;padding:12px 16px;font-size:20px}
+section{max-width:900px;margin:12px auto;padding:0 12px}.box{background:#fff;padding:12px;border-radius:10px;margin-bottom:12px}
+input,select{padding:7px;margin:3px;border:1px solid #bbb;border-radius:6px}button{background:#1f4e79;color:#fff;border:0;border-radius:6px;padding:7px 10px;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #ddd;padding:6px;text-align:left}.stats{display:flex;gap:10px;flex-wrap:wrap}.stats div{background:#dbe9f6;padding:8px 14px;border-radius:8px}
+#cert{display:none;border:3px double #1f4e79;padding:24px;background:#fff;text-align:center}@media print{body *{visibility:hidden}#cert,#cert *{visibility:visible}#cert{position:absolute;left:0;top:0;width:100%}}</style></head><body>
+<header>🏛️ Barangay Information System</header><section>
+<div class="box stats" id="stats"></div>
+<div class="box"><h3>Add Resident</h3><input id="n" placeholder="Full name"><input id="a" type="number" placeholder="Age" style="width:70px"><select id="g"><option>Male</option><option>Female</option></select><input id="p" placeholder="Purok / Address"><button onclick="addR()">Add</button></div>
+<div class="box"><input id="q" placeholder="🔍 Search resident" oninput="draw()" style="width:95%"><table><thead><tr><th>Name</th><th>Age</th><th>Sex</th><th>Purok</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+<div id="cert"></div></section>
+<script>
+let R=JSON.parse(localStorage.brgyR||'[]');
+function save(){localStorage.brgyR=JSON.stringify(R);draw()}
+function addR(){if(!n.value||!a.value)return alert('Name and age required');R.push({id:Date.now(),n:n.value,a:+a.value,g:g.value,p:p.value});n.value=a.value=p.value='';save()}
+function del(id){if(confirm('Delete resident?')){R=R.filter(r=>r.id!=id);save()}}
+function cert(id){const r=R.find(r=>r.id==id),d=new Date().toLocaleDateString();cert_.style.display='block';cert_.innerHTML='<h2>Republic of the Philippines</h2><h3>BARANGAY CLEARANCE</h3><p>This certifies that <b>'+r.n+'</b>, '+r.a+' years old, of '+(r.p||'this barangay')+', is a bonafide resident and is known to be of good moral character.</p><p>Issued on '+d+'</p><p><br>______________<br>Punong Barangay</p><button onclick="print()">🖨️ Print</button>';cert_.scrollIntoView()}
+const cert_=document.getElementById('cert');
+function draw(){const f=q.value.toLowerCase(),L=R.filter(r=>r.n.toLowerCase().includes(f));
+tb.innerHTML=L.map(r=>'<tr><td>'+r.n+'</td><td>'+r.a+'</td><td>'+r.g+'</td><td>'+r.p+'</td><td><button onclick="cert('+r.id+')">Clearance</button> <button onclick="del('+r.id+')" style="background:#c0392b">✕</button></td></tr>').join('');
+stats.innerHTML='<div>Total: <b>'+R.length+'</b></div><div>Male: <b>'+R.filter(r=>r.g=='Male').length+'</b></div><div>Female: <b>'+R.filter(r=>r.g=='Female').length+'</b></div><div>Seniors (60+): <b>'+R.filter(r=>r.a>=60).length+'</b></div><div>Minors: <b>'+R.filter(r=>r.a<18).length+'</b></div>'}
+draw();
+</script></body></html>
