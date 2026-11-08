@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pickleball</title><style>body{margin:0;background:#222;color:#fff;font-family:system-ui;text-align:center}canvas{background:#2e7d32;max-width:100%;touch-action:none;display:block;margin:auto}h2{margin:8px}button{padding:8px 14px;margin:6px;border:0;border-radius:6px;font-size:16px} canvas{background:#1565c0}</style></head><body><h2>🏓 Pickleball</h2><div id="hud"></div><canvas id="c" width="480" height="320"></canvas><p>Move mouse/finger up and down. First to 11 (win by 2).</p>
+<script>
+const x=c.getContext('2d');let py=160,ay=160,b,ps=0,as=0,over=false;
+function serve(d){b={x:240,y:160,vx:4*d,vy:(Math.random()-.5)*5}}serve(1);
+function pos(e){const r=c.getBoundingClientRect();py=(e.clientY-r.top)*c.height/r.height}
+c.onpointermove=pos;c.onpointerdown=e=>{pos(e);if(over){ps=as=0;over=false;serve(1)}}
+function loop(){x.clearRect(0,0,480,320);x.strokeStyle='#fff';x.lineWidth=2;x.strokeRect(10,10,460,300);x.beginPath();x.moveTo(240,10);x.lineTo(240,310);x.stroke();
+x.setLineDash([6,6]);x.beginPath();x.moveTo(170,10);x.lineTo(170,310);x.moveTo(310,10);x.lineTo(310,310);x.stroke();x.setLineDash([]);
+if(!over){b.x+=b.vx;b.y+=b.vy;if(b.y<14||b.y>306)b.vy=-b.vy;
+ay+=Math.max(-3.2,Math.min(3.2,b.y-ay));
+if(b.vx<0&&b.x<30&&Math.abs(b.y-py)<34){b.vx=-b.vx*1.06;b.vy+=(b.y-py)/8}
+if(b.vx>0&&b.x>450&&Math.abs(b.y-ay)<34){b.vx=-b.vx*1.06;b.vy+=(b.y-ay)/8}
+if(b.x<0){as++;serve(1)}if(b.x>480){ps++;serve(-1)}
+if((ps>=11||as>=11)&&Math.abs(ps-as)>=2)over=true}
+x.fillStyle='#fff';x.fillRect(14,py-30,8,60);x.fillRect(458,ay-30,8,60);x.fillStyle='#f1c40f';x.beginPath();x.arc(b.x,b.y,8,0,7);x.fill();
+hud.textContent='You '+ps+' - '+as+' CPU'+(over?(ps>as?'  YOU WIN! Tap to replay':'  CPU wins. Tap to replay'):'');requestAnimationFrame(loop)}
+loop();
+</script></body></html>
